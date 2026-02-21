@@ -1,0 +1,80 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": [
+    "lead_type",
+    "intent",
+    "business_value",
+    "risk_factors",
+    "recommended_action",
+    "confidence"
+  ],
+  "properties": {
+    "lead_type": {
+      "type": "string",
+      "enum": ["enterprise", "smb", "startup", "individual", "unknown"]
+    },
+    "intent": {
+      "type": "object",
+      "properties": {
+        "primary_goal": { "type": "string" },
+        "urgency_level": {
+          "type": "string",
+          "enum": ["low", "medium", "high"]
+        },
+        "decision_stage": {
+          "type": "string",
+          "enum": ["awareness", "consideration", "decision"]
+        }
+      },
+      "required": ["primary_goal", "urgency_level", "decision_stage"]
+    },
+    "business_value": {
+      "type": "object",
+      "properties": {
+        "estimated_deal_size_usd": { "type": ["number", "null"] },
+        "potential_ltv_usd": { "type": ["number", "null"] },
+        "priority_score": { "type": "integer", "minimum": 1, "maximum": 10 }
+      },
+      "required": ["estimated_deal_size_usd", "potential_ltv_usd", "priority_score"]
+    },
+    "risk_factors": {
+      "type": "object",
+      "properties": {
+        "budget_risk": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        },
+        "churn_risk": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        },
+        "complexity_risk": {
+          "type": "string",
+          "enum": ["low", "medium", "high", "unknown"]
+        }
+      },
+      "required": ["budget_risk", "churn_risk", "complexity_risk"]
+    },
+    "recommended_action": {
+      "type": "object",
+      "properties": {
+        "sales_motion": {
+          "type": "string",
+          "enum": ["self_service", "sales_assisted", "enterprise_sales", "reject"]
+        },
+        "next_step": { "type": "string" },
+        "recommended_owner": {
+          "type": "string",
+          "enum": ["sales", "support", "marketing", "automation"]
+        }
+      },
+      "required": ["sales_motion", "next_step", "recommended_owner"]
+    },
+    "confidence": {
+      "type": "number",
+      "minimum": 0,
+      "maximum": 1
+    }
+  }
+}
