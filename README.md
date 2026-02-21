@@ -1,45 +1,108 @@
-# Structured JSON Output Case Study
+# Structured JSON Output — Business Case (B2B Lead Analysis)
 
-This repository demonstrates how prompt design can enforce
-strictly structured JSON output from a large language model.
-The same input domain (platypus biology) is intentionally used
-to focus on prompt behavior and output controllability rather
-than content variation.
+## Overview
 
----
+This repository demonstrates a production-oriented LLM prompt design
+focused on strict structured JSON output for real business use cases.
 
-## Model Configuration
+The case simulates a B2B SaaS lead analysis system, where inbound customer
+messages are automatically classified, scored, and routed using an LLM.
 
-- Model: GPT-4
-- Interaction mode: Chat-based interaction
-- Temperature: default
-- Top-p: default
-- Same input text for all runs
+The output is designed to be:
+- machine-readable;
+- schema-valid;
+- automation-ready;
+- suitable for CRM / BI / sales pipelines.
 
 ---
 
-## Goal
-Produce stable, machine-readable JSON suitable for automated
-processing and downstream systems.
+## Business Problem
+
+B2B SaaS companies receive high volumes of inbound messages via:
+- website forms;
+- emails;
+- chat widgets;
+- CRM integrations.
+
+Manual triage does not scale.
+
+**Goal:**  
+Use an LLM to transform unstructured text into structured business intelligence
+that can drive automated decision-making.
 
 ---
 
-## Method
-- Same task
-- Same model
-- Same input text
-- 3 consecutive runs
-- Qualitative evaluation of structure and stability
+## Output Capabilities
+
+The model produces:
+- lead classification
+- intent analysis
+- estimated business value
+- risk assessment
+- recommended sales action
+- confidence score
+
+All outputs strictly follow a predefined JSON schema.
 
 ---
 
-## Structure
-- `prompt/` – system and user prompt used to generate JSON output
-- `results/` – real model outputs across multiple runs
-- `evaluation.md` – observations and conclusions
+## Repository Structure
+```
+structured-json-output-case/
+│
+├─ README.md
+├─ requirements.txt
+│
+├─ prompts/
+│   ├─ system_prompt.txt
+│   ├─ user_prompt.txt
+│
+├─ schemas/
+│   └─ lead_analysis.schema.json
+│
+├─ examples/
+│   ├─ input_example.txt
+│   └─ output_example.json
+│
+├─ validation/
+│   └─ model.py
+│
+└─ pipeline/
+    └─ run.py
 
-## Key Result
-The prompt consistently produced valid, schema-compliant JSON
-across multiple runs. Output variability was limited to wording
-only, while structure and field integrity remained stable,
-making the results suitable for automation.
+```
+
+---
+
+## Typical Production Flow
+```
+Inbound message
+↓
+LLM (structured prompt)
+↓
+JSON validation
+↓
+CRM / Sales Routing / Analytics
+
+```
+
+---
+
+## Why This Matters
+
+This project demonstrates:
+- disciplined prompt engineering;
+- schema-first design;
+- LLMs as decision-support systems;
+- real-world business reasoning (LTV, risk, prioritization).
+
+---
+
+## Possible Extensions
+
+- Confidence threshold routing;
+- Prompt versioning;
+- Output evaluation & scoring;
+- Multi-model comparison;
+- CRM webhook integration.
+
