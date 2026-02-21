@@ -26,8 +26,6 @@ B2B SaaS companies receive high volumes of inbound messages via:
 
 Manual triage does not scale.
 
----
-
 **Goal:**  
 Use an LLM to transform unstructured text into structured business intelligence
 that can drive automated decision-making.
